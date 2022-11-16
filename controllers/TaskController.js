@@ -30,18 +30,34 @@ const TaskController = {
       res.status(500).send({ msg: "Error while getting task", error });
     }
   },
-async taskCompleted(req, res) {
+  async taskCompleted(req, res) {
     try {
-        const task = await Task.findByIdAndUpdate(req.params._id, {completed:true}, {new:true});
-        res.send({ msg: "Task completed", task });
-        
+      const task = await Task.findByIdAndUpdate(
+        req.params._id,
+        { completed: true },
+        { new: true }
+      );
+      res.send({ msg: "Task completed", task });
     } catch (error) {
-        console.error(error);
+      console.error(error);
       res.status(500).send({ msg: "Error while completing task", error });
-        
     }
-}
+  },
 
+  async updateTitleTask(req, res) {
+    try {
+      const task = await Task.findByIdAndUpdate(
+        req.params._id,
+        { title: req.body.title },
+        { new: true }
+      );
+
+      res.send({ msg: "Task title updated", task });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ msg: "Error while updating title", error });
+    }
+  },
 };
 
 module.exports = TaskController;

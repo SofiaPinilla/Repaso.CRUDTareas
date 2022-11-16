@@ -6,6 +6,7 @@ router.post("/createTask", TaskController.createTask);
 router.get("/getAllTask", TaskController.getAllTask);
 router.get("/getTaskById/:_id", TaskController.getTaskById);
 router.put("/taskCompleted/:_id", TaskController.taskCompleted);
-
+router.put("/updateTitleTask/:_id", TaskController.updateTitleTask);
 
 module.exports = router;
+
