@@ -58,6 +58,16 @@ const TaskController = {
       res.status(500).send({ msg: "Error while updating title", error });
     }
   },
+
+  async deleteTask(req, res) {
+    try {
+      const task = await Task.findByIdAndDelete(req.params._id);
+      res.send({msg: "Deleted successfully", task});
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ msg: "Error while deleting", error });
+    }
+  }
 };
 
 module.exports = TaskController;
