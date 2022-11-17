@@ -14,7 +14,7 @@ const TaskController = {
   async getAllTask(req, res) {
     try {
       const tasks = await Task.find();
-      res.send(tasks);
+      res.send({msg:"Tasks were obtained", tasks});
     } catch (error) {
       console.error(error);
       res.status(500).send({ msg: "Error while getting tasks", error });
